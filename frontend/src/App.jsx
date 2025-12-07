@@ -18,10 +18,15 @@ function App() {
     setError(null);
 
     try {
-      const res = await fetch('/api/campaign', {
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${apiUrl}/api/campaign`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image, style: 'professional' }),
+        body: JSON.stringify({
+          image,
+          style: 'professional',
+          user_prompt: userPrompt
+        }),
       });
 
       if (!res.ok) {

@@ -58,7 +58,8 @@ export function CampaignResults({ data, onReset }) {
         if (!prompt.trim()) return;
         setRefining(true);
         try {
-            const res = await fetch('/api/refine', {
+            const apiUrl = import.meta.env.VITE_API_URL || '';
+            const res = await fetch(`${apiUrl}/api/refine`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
