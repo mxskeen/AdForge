@@ -1,0 +1,22 @@
+[project]
+name = "dream-capture-api"
+version = "0.1.0"
+description = "AI Dream Visualization API"
+authors = [
+    {name = "Developer"}
+]
+readme = "README.md"
+requires-python = "^3.11"
+dependencies = [
+    "fastapi (>=0.124.0,<0.125.0)",
+    "uvicorn[standard] (>=0.38.0,<0.39.0)",
+    "boto3 (>=1.42.4,<2.0.0)",
+    "python-dotenv (>=1.2.1,<2.0.0)",
+    "pydantic (>=2.12.5,<3.0.0)",
+    "python-multipart (>=0.0.20,<0.0.21)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
