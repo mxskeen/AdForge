@@ -114,30 +114,30 @@ Return JSON only:
         colors = ", ".join(product.get("color_palette", []))
         category = product.get("category", "product")
         
-        # presets based on user references
+        # High-end prompt presets based on user references
         styles = {
-            "professional": f"high-end commercial product photography of {product.get('name')}, soft studio lighting, pastel {colors} background, sharp focus, 8k, highly detailed, advertising standard, rule of thirds, vanilla bean and fruit props, clean composition",
-            "luxury": f"cinematic 3D render style of {product.get('name')}, dramatic neon lighting, dark elegant background, floating elements, ray tracing, unreal engine 5 render, futuristic, premium advertising, glowing edges",
-            "playful": f"artistic top-down shot of {product.get('name')}, textured background with smeared {colors} paint, high contrast, vibrant, pop art style, creative composition, social media trend",
-            "minimal": f"architectural product photography of {product.get('name')}, pure solid background, hard shadows, geometric composition, design magazine style, 8k resolution",
+            "professional": f"high-end commercial product photography of {product.get('name')}, soft studio lighting, pastel {colors} background, sharp focus, 8k, highly detailed, advertising standard, rule of thirds, vanilla bean and fruit props, clean composition, blank packaging, no text",
+            "luxury": f"cinematic 3D render style of {product.get('name')}, dramatic neon lighting, dark elegant background, floating elements, ray tracing, unreal engine 5 render, futuristic, premium advertising, glowing edges, blank packaging, no text",
+            "playful": f"artistic top-down shot of {product.get('name')}, textured background with smeared {colors} paint, high contrast, vibrant, pop art style, creative composition, social media trend, blank packaging, no text",
+            "minimal": f"architectural product photography of {product.get('name')}, pure solid background, hard shadows, geometric composition, design magazine style, 8k resolution, blank packaging, no text",
         }
 
         selected_prompt = styles.get(style, styles["professional"])
         
-        
+        # Add quality boosters
         full_prompt = f"{selected_prompt}, masterpiece, professional color grading, sharp details, no text, no watermarks"
 
         body = json.dumps({
             "taskType": "TEXT_IMAGE",
             "textToImageParams": {
                 "text": full_prompt,
-                "negativeText": "text, watermark, low quality, blurry, distorted, deformed, ugly, bad anatomy, pixelated, grain"
+                "negativeText": "text, watermark, low quality, blurry, distorted, deformed, ugly, bad anatomy, pixelated, grain, writing, letters"
             },
             "imageGenerationConfig": {
                 "numberOfImages": 1,
                 "height": 1024,
                 "width": 1024,
-                "cfgScale": 9.0, 
+                "cfgScale": 8.0, 
             },
         })
 
@@ -147,6 +147,9 @@ Return JSON only:
             contentType="application/json",
             accept="application/json",
         )
+
+        data = json.loads(response["body"].read())
+        return data.get("images", [""])[0]
 
     def refine_copy(self, current_text: str, refinement_prompt: str, context: str) -> str:
         prompt = f"""Refine this marketing copy based on the user's request.
