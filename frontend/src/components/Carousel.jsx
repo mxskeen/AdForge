@@ -1,37 +1,44 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const examples = [
     {
-        title: "Minimalist Coffee",
-        category: "Luxury",
-        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1000&auto=format&fit=crop",
-        caption: "Awaken your senses. #MorningRitual"
+        title: "Monster Energy",
+        category: "Beverage",
+        image: "https://images.unsplash.com/photo-1622543925917-763c34d1a86e?q=80&w=1000&auto=format&fit=crop",
+        caption: "Literally the best thing on this planet #EnergyDrink"
     },
     {
-        title: "Urban Sneakers",
-        category: "Streetwear",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop",
-        caption: "Step into the future. #StreetStyle"
+        title: "EcoChronos Watch",
+        category: "Accessories",
+        image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1000&auto=format&fit=crop",
+        caption: "Time for nature. Sustainably crafted. 🌿 #EcoLuxury"
     },
     {
-        title: "Organic Skincare",
-        category: "Beauty",
-        image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1000&auto=format&fit=crop",
-        caption: "Pure nature, pure you. #CleanBeauty"
+        title: "Elixir",
+        category: "Fragrance",
+        image: "https://images.unsplash.com/photo-1616640045164-deb3b104c4b6?w=500&auto=format&fit=crop",
+        caption: "The scent of mystery. Own the night. 🌙 #MidnightElixir"
     },
     {
-        title: "Tech Gadgets",
-        category: "Electronics",
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop",
-        caption: "Work smarter, not harder. #TechLife"
+        title: "RetroSnap 90",
+        category: "Photography",
+        image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=1000&auto=format&fit=crop",
+        caption: "Capture the vibe. Vintage soul, modern tech. 📸 #RetroStyle"
     },
     {
-        title: "Modern Furniture",
-        category: "Home",
-        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1000&auto=format&fit=crop",
-        caption: "Elevate your space. #InteriorDesign"
+        title: "X1",
+        category: "Footwear",
+        image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1000&auto=format&fit=crop",
+        caption: "Walk on the future. Zero gravity comfort. 🚀 #CyberStep"
+    },
+    {
+        title: "Zenith Headphones",
+        category: "Audio",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop",
+        caption: "Silence the world. Hear the music. 🎧 #PureSound"
     }
 ];
 
@@ -42,7 +49,7 @@ export function Carousel() {
         <>
             <div className="w-full overflow-hidden py-12 bg-neutral-950/50">
                 <div className="text-center mb-8">
-                    <h3 className="text-lg font-medium text-neutral-200">Made with AdForge</h3>
+                    <h3 className="text-lg font-medium text-neutral-200">AdForge Can Help You Think Beyond</h3>
                 </div>
 
                 <div className="relative flex overflow-x-hidden group">
