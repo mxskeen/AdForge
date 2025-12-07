@@ -25,7 +25,6 @@ function App() {
         body: JSON.stringify({
           image,
           style: 'professional',
-          user_prompt: userPrompt
         }),
       });
 
