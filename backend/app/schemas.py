@@ -29,3 +29,9 @@ class CampaignResponse(BaseModel):
 class CampaignRequest(BaseModel):
     image: str
     style: Optional[str] = "professional"
+
+
+class RefineRequest(BaseModel):
+    current_text: str
+    refinement_prompt: str
+    context: str  # e.g., "instagram_caption"

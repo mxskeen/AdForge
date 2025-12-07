@@ -2,8 +2,9 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 
-from .schemas import CampaignRequest, CampaignResponse, ProductAnalysis, MarketingCopy
+from .schemas import CampaignRequest, CampaignResponse, ProductAnalysis, MarketingCopy, RefineRequest
 from .bedrock import bedrock_client
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -51,6 +52,16 @@ async def generate_campaign(request: CampaignRequest):
             styled_image=styled,
             original_image=request.image,
         )
+    except Exception as e:
+        logger.error(f"Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+@app.post("/api/refine")
+async def refine_copy(request: RefineRequest):
+    try:
+        refined_text = bedrock_client.refine_copy(
+            request.current_text, request.refinement_prompt, request.context
+        )
+        return {"refined_text": refined_text}
     except Exception as e:
         logger.error(f"Error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))

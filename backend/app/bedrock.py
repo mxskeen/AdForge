@@ -148,8 +148,25 @@ Return JSON only:
             accept="application/json",
         )
 
-        data = json.loads(response["body"].read())
-        return data.get("images", [""])[0]
+    def refine_copy(self, current_text: str, refinement_prompt: str, context: str) -> str:
+        prompt = f"""Refine this marketing copy based on the user's request.
+
+Context: {context}
+Current Text: "{current_text}"
+User Request: "{refinement_prompt}"
+
+Return ONLY the refined text. Do not include quotes or explanations."""
+
+        messages = [{"role": "user", "content": [{"text": prompt}]}]
+
+        response = self.client.converse(
+            modelId=self.nova_lite,
+            messages=messages,
+            inferenceConfig={"maxTokens": 512, "temperature": 0.7},
+        )
+
+        return response["output"]["message"]["content"][0]["text"].strip()
+
 
 
 bedrock_client = BedrockClient()
